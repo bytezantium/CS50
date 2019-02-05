@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Stocks</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+            <th scope="col" class="col-md-auto">Buy</th>
+            <th scope="col" class="col-md-auto">Sell</th>
+            <th scope="col">TOTAL</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr class="table-success">
+            <td> Grand Total </td>
+            <td colspan="4"></td>
+            <td><b>{{ grand_total|usd }}</b></td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <!-- portfolio: [((stocks, shares), (currentprice), (holding)), ....)] -->
+        {% for item in portfolio %}
+        <tr>
+            <!-- stocks, shares -->
+            <td>{{ item[0][0] }}</td>
+            <td>{{ item[0][1] }}</td>
+            <!-- current prices -->
+            <td>{{ item[1][0]|usd }}</td>
+            <!-- Buy -->
+            <td>
+                <form action="/buy" method="post">
+                    <div class="form-group">
+                        {% if item[1][0] <= balance %}
+                        <input type="hidden" name="symbol" value="{{ item[0][0] }}">
+                        <input style="display:inline; width:70px;" autocomplete="off" autofocus class="form-control" name="shares" min="1" placeholder="#" type="number" step="1"/>
+                    </div>
+                    <button style="display:inline;" class="btn btn-sm btn-outline-primary" type="submit">Buy</button>
+                        {% else %}
+                    <div class="form-group">
+                        <input style="display:inline; width:70px;" autocomplete="off" autofocus class="form-control" name="shares" placeholder="#" type="number" disabled/>
+                    </div>
+                    <button style="display:inline;" class="btn btn-sm btn-outline-primary" type="submit" disabled>Buy</button>
+                        {% endif %}
+                </form>
+            </td>
+            <!-- Sell -->
+            <td>
+                <form action="/sell" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="symbol" value="{{ item[0][0] }}">
+                        <input style="display:inline; width:70px;" autocomplete="off" autofocus class="form-control" name="shares" min="1" max="{{ item[0][1] }}" placeholder="#" type="number" step="1"/>
+                    </div>
+                    <button style="display:inline;" class="btn btn-sm btn-outline-warning" type="submit">Sell</button>
+                </form>
+            </td>
+            <!-- value of each holding -->
+            <td>{{ item[2][0]|usd }}</td>
+        </tr>
+        {% endfor %}
+        <tr class="table-info">
+            <td> Funds </td>
+            <td colspan="4"></td>
+            <td>
+                {{ balance|usd }}
+                <form action="/" method="post">
+                        <input style="display:inline; width:100px;" autocomplete="off" autofocus class="form-control" name="deposit" min="1" placeholder="$" type="number" step="0.01"/>
+                        <button style="display:inline;" class="btn btn-sm btn-outline-primary" type="submit">deposit</button>
+                </form>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

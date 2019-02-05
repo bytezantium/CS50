@@ -1,0 +1,22 @@
+
+ Visa uses 13-digit numbers and 16 digit  Visa numbers all start with 4
+ American Express uses 15-digit numbers   American Express  34 or 37
+ MasterCard uses 16-digit numbers         MasterCard  51, 52, 53, 54, or 55
+ Visa uses 16-digit numbers.              Visa numbers all start with 4
+
+
+
+Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products' digits together.
+Add the sum to the sum of the digits that weren’t multiplied by 2.
+If the total’s last digit is 0 (or, put more formally, if the total modulo 10 is congruent to 0), the number is valid!
+
+Specifcation
+In credit.c in ~/workspace/pset1/credit/, write a program that prompts the user for a credit card number and then reports (via printf)
+whether it is a valid American Express, MasterCard, or Visa card number, per the definitions of each’s format herein.
+
+So that we can automate some tests of your code, we ask that your program’s last line of output be AMEX\n or MASTERCARD\n or VISA\n or INVALID\n,
+nothing more, nothing less, and that main always return 0.
+
+For simplicity, you may assume that the user’s input will be entirely numeric (i.e., devoid of hyphens, as might be printed on an actual card).
+
+Do not assume that the user’s input will fit in an int! Best to use get_long_long from CS50’s library to get users' input. (Why?)

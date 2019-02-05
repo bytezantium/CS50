@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Transaction_id</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Price</th>
+            <th scope="col">Buy_Sell</th>
+            <th scope="col">Cost_Revenue</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- DB transactions: [{transaction_id: x}, {stock: y}, ....] -->
+        {% for dicts in transactions %}
+        <tr>
+            <!-- transaction values -->
+            {% for key, value in dicts.items() %}
+                {% if key in ["cost_revenue", "price"] %}
+                    <td>{{ value | float | usd }}</td>
+                {% else %}
+                    <td>{{ value }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
