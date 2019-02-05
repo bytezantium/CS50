@@ -1,5 +1,5 @@
 # CS50x
-CS50x Problem Sets. Most from 2018. Some from 2019.
+CS50x Problem Sets solutions and experimental code. Most from 2018. Some from 2019.
 
 Find the problem sets in their respective "pset" directories and sometimes you can also find "src" folders, which contain source code with example code that is relevant to the topic of the problem set.
 
