@@ -1,2 +1,3 @@
 **/*.db linguist-vendored
 **/src*/** linguist-documentation
+./2019/crack-py/** linguist-documentation
