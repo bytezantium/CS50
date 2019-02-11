@@ -1,2 +1,2 @@
 **/*.db linguist-vendored
-**/src/** linguist-documentation
+**/src*/** linguist-documentation
