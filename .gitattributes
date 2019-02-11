@@ -4,4 +4,4 @@
 **/src*/** linguist-documentation
 
 # This is my own code but I experimented a lot here, so want to exclude it from the repo's lang stats.
-/2019/Pset6/crack-py/** linguist-documentation
+/2019/Pset6/crack-py/experimentation/** linguist-documentation
