@@ -91,4 +91,3 @@ def substitution_cost(matrix, row, cell, charA, charB):
         return (cost, Operation.SUBSTITUTED)
     else:
         return (cost + 1, Operation.SUBSTITUTED)
-
