@@ -1,4 +1,4 @@
-import cs50
+#import cs50 - commented out to be able to run app from local machine
 import re
 from flask import Flask, abort, redirect, render_template, request
 from html import escape
@@ -85,7 +85,8 @@ def score():
     transitions.append((s2, None, None))
 
     # Output comparison
-    return render_template("score.html", matrix=matrix, s1=s1, s2=s2, operations=transitions)
+    return render_template("score.html", matrix=matrix, s1=s1, s2=s2, operations=transitions,
+                           lenS1=len(s1), lenS2=len(s2))
 
 
 @app.errorhandler(HTTPException)

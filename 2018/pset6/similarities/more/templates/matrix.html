@@ -1,1 +1,40 @@
-<!-- TODO -->
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            {% for char in s2 %}
+                <th>{{ char }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            {% for i in range(lenS2 + 1) %}
+                <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th></th>
+            <th>0</th>
+            {% for cell in matrix[0] %}
+                <!-- cell[0] is the cost-->
+                <td>{{ cell[0] }}</td>
+            {% endfor %}
+        </tr>
+        {% for i in range(lenS1) %}
+            <tr>
+                <th>{{ s1[i] }}</th>
+                <th>{{ i + 1 }}</th>
+
+                {% for j in range(lenS2 + 1) %}
+                    <!-- row[i + 1][j][0] is the cost-->
+                    <td>{{ matrix[i + 1][j][0] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
